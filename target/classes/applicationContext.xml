@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ctx="http://www.springframework.org/schema/context"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:c="http://www.springframework.org/schema/c"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+	    http://www.springframework.org/schema/context/spring-context.xsd
+	    http://www.springframework.org/schema/aop		
+        http://www.springframework.org/schema/aop/spring-aop.xsd">
+	   
+	  <bean id="beaninterface" class="com.yash.bean.BeanInterfaceImpl">
+	  </bean> 
+	  <bean id="bean" class="com.yash.bean.Bean">
+	  <property name="beanInterfaceInterface" ref="beaninterface"></property>
+	  </bean>
+	  
+	   <bean id="bean1" class="com.yash.bean.Bean1" autowire="constructor"></bean>
+	   <bean id="bean2" class="com.yash.bean.Bean2" autowire="byType"></bean>
+	   <bean id="bean3" class="com.yash.bean.Bean3" autowire="byType"></bean>
+	   <bean id="bean4" class="com.yash.bean.Bean4" ></bean>
+	  
+	  <!--  	   <bean id="bean312" class="com.yash.bean.Bean3" autowire="byType"></bean>
+	    -->
+
+   <bean id="bean5" class="com.yash.bean.Bean5" autowire="constructor"></bean>
+	   <bean id="bean6" class="com.yash.bean.Bean6" autowire="constructor"></bean>
+
+
+
+	  <!--  <bean id="abstractbean" class="com.yash.bean.AbstractBean"  abstract="true"></bean>
+		 <bean id="subabstractbean" class="com.yash.bean.SubAbstractBean"  parent="abstractbean">
+		 <property name="a" value="10"></property>
+		 </bean> -->
+		 
+		 
+		 <bean id="parentcollection" class="com.yash.bean.ParentCollection">
+		 <property name="cityNames">
+		 <list>
+		 <value>New York</value>
+			 <value>Australia</value>
+	
+		 </list>
+		 
+		 </property>
+		 
+		 <property name="city">
+		 <list>
+		 <value>New York111</value>
+			 <value>Australia</value>
+	
+		 </list>
+		 
+		 </property>
+		 <property name="stateNames">
+		 <set>
+		 <value>Texas</value>
+		 <value>Florida</value>
+		 </set>
+		 </property>
+		 
+		 <property name="country">
+		 <map>
+		 <entry key="c001" value="USA"></entry>
+		 </map>
+		 </property>
+		 </bean>
+		
+		
+		 <bean id="childcollection" class="com.yash.bean.ChildCollection" parent="parentcollection">
+		 <property name="cityNames">
+		 <list merge="true">
+		 <value>Pune</value>
+			 <value>Kolkatta</value>
+	
+		 </list>
+		 
+		 </property>
+		 
+		 <property name="stateNames">
+		 <set>
+		 <value>Maharashtra</value>
+		 <value>TamilNadu</value>
+		 </set>
+		 </property>
+		 
+		 <property name="country">
+		 <map>
+		 <entry key="c001" value="India"></entry>
+		 </map>
+		 </property>
+		 </bean>
+		 
+		 
+		
+		<bean id="beanb" class="com.yash.bean.BeanB" depends-on="beana"	></bean>
+	<bean id="beana" class="com.yash.bean.BaenA" ></bean>
+	
+	
+	<bean id="outerBean" class="com.yash.bean.OuterBean">
+	<property name="annoyBean">
+	<bean  class="com.yash.bean.AnnoyBean"></bean></property>
+	</bean>	  
+	
+	
+	<bean id="innerbean" class="com.yash.bean.OuterBean$InnerBean "></bean>
+		 
+</beans>
+
+	
